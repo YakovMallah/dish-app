@@ -33,7 +33,7 @@ As the Antigravity agent working on the "Dish" project, you must adhere strictly
 - **Validation:** Always use Convex's `v` object to strictly validate all arguments for every `query` and `mutation`.
 - **Logic Separation:** Keep complex business logic in the Convex backend. The frontend should largely remain a dumb presentation layer fetching exactly what it needs.
 - **Indexes:** Always define schema indexes for queries that filter or sort by fields other than `_id`.
-- **Security:** Implement Row Level Security or equivalent authorization checks inside every mutation/query to ensure the user making the request owns the data or has access to it.
+- **Security:** Implement explicit authorization checks inside every `query` and `mutation` to ensure the user making the request owns the data or otherwise has access to it.
 
 ### TanStack Start (Web)
 - **Routing:** Follow file-based routing conventions strictly.
@@ -48,7 +48,7 @@ As the Antigravity agent working on the "Dish" project, you must adhere strictly
 
 - **Zero Hardcoded Secrets:** Never hardcode any API key, JWT token, or sensitive configuration in code. Always load these via `.env` / environment variables.
 - **Safe Authentication Context:** Ensure that Convex auth tokens are securely passed and verified.
-- **XSS Prevention:** Do not use `dangerouslySetInnerHTML` in React unless absolutely necessary, and only with fully sanitized input. 
+- **XSS Prevention:** Do not use `dangerouslySetInnerHTML` in React unless absolutely necessary, and only with fully sanitized input.
 - **Input Validation:** Don't trust frontend validation alone. The Convex backend MUST re-validate all payloads.
 
 ## 5. Agent Workflow & Pre-Commit Code Review Checklist
