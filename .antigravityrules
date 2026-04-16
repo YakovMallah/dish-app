@@ -4,14 +4,17 @@ As the Antigravity agent working on the "Dish" project, you must adhere strictly
 
 ## 1. Project Architecture & Tech Stack
 
-"Dish" is a monorepo built with Turborepo. It encompasses a cross-platform strategy:
+"Dish" is a monorepo built with Turborepo. It encompasses a cross-platform strategy with these core technologies:
 - **Web App:** TanStack Start
 - **Mobile App:** Expo (React Native)
 - **Backend/Database:** Convex
+- **Authentication:** WorkOS
+- **Web Styling:** Tailwind CSS
+- **Mobile Styling:** NativeWind
 
 ### Monorepo Conventions (Turborepo)
 - **Structure:** Application projects live in `apps/` (e.g., web, mobile) and shared code/config lives in `packages/` (e.g., ui, eslint-config, typescript-config).
-- **Dependencies:** Always install dependencies into the specific workspace that needs them. Root dependencies should be strictly limited to monorepo maintenance tools (like Turbo, Prettier).
+- **Dependencies:** Always install dependencies into the specific workspace that needs them. Root dependencies should be strictly limited to monorepo maintenance tools (like Turbo).
 - **Code Sharing:** Extract reusable domain logic, utility functions, and universal UI components into `packages/` to share across TanStack Start and Expo.
 
 ## 2. Code Style & Formatting
@@ -25,7 +28,7 @@ As the Antigravity agent working on the "Dish" project, you must adhere strictly
   - Use functional components with hooks. Do not use class components.
   - Minimize `useEffect` usage; prefer derived state or action-based state updates when possible.
   - Always destructure props in the component signature.
-- **Formatting:** Code should be cleanly indented, following standard Prettier rules. File structures should group imports cleanly (built-ins first, external libraries second, internal aliases third, relative paths last).
+- **Formatting:** Code should be cleanly indented, using consistent formatting conventions across the codebase. File structures should group imports cleanly (built-ins first, external libraries second, internal aliases third, relative paths last).
 
 ## 3. Framework-Specific Guidelines
 
