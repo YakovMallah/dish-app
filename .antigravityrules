@@ -1,0 +1,70 @@
+# Antigravity Agent Rules & Best Practices
+
+As the Antigravity agent working on the "Dish" project, you must adhere strictly to these project-specific best practices, architectural conventions, and code review guidelines.
+
+## 1. Project Architecture & Tech Stack
+
+"Dish" is a monorepo built with Turborepo. It encompasses a cross-platform strategy:
+- **Web App:** TanStack Start
+- **Mobile App:** Expo (React Native)
+- **Backend/Database:** Convex
+
+### Monorepo Conventions (Turborepo)
+- **Structure:** Application projects live in `apps/` (e.g., web, mobile) and shared code/config lives in `packages/` (e.g., ui, eslint-config, typescript-config).
+- **Dependencies:** Always install dependencies into the specific workspace that needs them. Root dependencies should be strictly limited to monorepo maintenance tools (like Turbo, Prettier).
+- **Code Sharing:** Extract reusable domain logic, utility functions, and universal UI components into `packages/` to share across TanStack Start and Expo.
+
+## 2. Code Style & Formatting
+
+- **TypeScript Strictness:** Strict typing is mandatory. Avoid using the `any` type altogether; use `unknown` if the type is truly dynamic, and narrow it.
+- **Naming Conventions:**
+  - `camelCase` for functions, hooks, variables, and instances.
+  - `PascalCase` for React components, type definitions, interfaces, and classes.
+  - `UPPER_SNAKE_CASE` for global constant values.
+- **React Standards:**
+  - Use functional components with hooks. Do not use class components.
+  - Minimize `useEffect` usage; prefer derived state or action-based state updates when possible.
+  - Always destructure props in the component signature.
+- **Formatting:** Code should be cleanly indented, following standard Prettier rules. File structures should group imports cleanly (built-ins first, external libraries second, internal aliases third, relative paths last).
+
+## 3. Framework-Specific Guidelines
+
+### Convex (Backend)
+- **Validation:** Always use Convex's `v` object to strictly validate all arguments for every `query` and `mutation`.
+- **Logic Separation:** Keep complex business logic in the Convex backend. The frontend should largely remain a dumb presentation layer fetching exactly what it needs.
+- **Indexes:** Always define schema indexes for queries that filter or sort by fields other than `_id`.
+- **Security:** Implement Row Level Security or equivalent authorization checks inside every mutation/query to ensure the user making the request owns the data or has access to it.
+
+### TanStack Start (Web)
+- **Routing:** Follow file-based routing conventions strictly.
+- **Data Loading:** Use TanStack's built-in hooks and Loaders for data fetching. Leverage SSR effectively by fetching essential data in route loaders before rendering.
+
+### Expo (Mobile App)
+- **UI Performance:** Be mindful of the UI thread. Use `useMemo` and `useCallback` appropriately to prevent unnecessary re-renders in large lists or complex views.
+- **Cross-Platform Views:** Avoid redundant platform-specific code (e.g., `.ios.tsx` and `.android.tsx`) unless fundamentally required. Use `Platform.select` for minor API differences.
+- **Navigation:** Use Expo Router file-based navigation to keep routing synchronized with the web app mentality.
+
+## 4. Security Best Practices
+
+- **Zero Hardcoded Secrets:** Never hardcode any API key, JWT token, or sensitive configuration in code. Always load these via `.env` / environment variables.
+- **Safe Authentication Context:** Ensure that Convex auth tokens are securely passed and verified.
+- **XSS Prevention:** Do not use `dangerouslySetInnerHTML` in React unless absolutely necessary, and only with fully sanitized input. 
+- **Input Validation:** Don't trust frontend validation alone. The Convex backend MUST re-validate all payloads.
+
+## 5. Agent Workflow & Pre-Commit Code Review Checklist
+
+Before finishing a task, proposing a commit, or presenting work to the user, Antigravity MUST execute this "Self-Review":
+
+1. **Clean Code Verification:**
+   - Are there any leftover debugging statements? (`console.log`, `debugger`) -> **Remove them.**
+   - Are there any commented-out blocks of dead code? -> **Remove them.**
+2. **Linter & Type Readiness:**
+   - Mentally verify that you haven't introduced any TypeScript errors.
+   - Are all imports utilized? Are there unused variables?
+3. **Requirement Satisfaction:**
+   - Does this code directly solve the user's objective without over-engineering?
+4. **Security Check:**
+   - Could this change expose user data or introduce an XSS/injection vulnerability?
+5. **Commit Message Standard:**
+   - When proposing commits, use Conventional Commits style: `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`.
+   - Keep the summary brief but descriptive. Explain the *why* in the body if necessary.
