@@ -68,3 +68,5 @@ Before finishing a task, proposing a commit, or presenting work to the user, Ant
 5. **Commit Message Standard:**
    - When proposing commits, use Conventional Commits style: `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`.
    - Keep the summary brief but descriptive. Explain the *why* in the body if necessary.
+6. **PR & Code Review Management:**
+   - When addressing Code Review comments, ensure you push the fixes and actively resolve the threads.
