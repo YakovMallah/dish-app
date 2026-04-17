@@ -72,4 +72,4 @@ Before finishing a task, proposing a commit, or presenting work to the user, Ant
    - When proposing commits, use Conventional Commits style: `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`.
    - Keep the summary brief but descriptive. Explain the *why* in the body if necessary.
 6. **PR & Code Review Management:**
-   - When addressing Code Review comments, ensure you push the fixes and actively resolve the threads.
+   - When addressing Code Review comments, you MUST push the fixes and **actively resolve the thread in GitHub** (using the `resolveReviewThread` GraphQL mutation via `gh api graphql`). Never push a fix for a review thread without also marking that thread as resolved on GitHub.
