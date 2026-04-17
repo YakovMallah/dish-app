@@ -1,0 +1,16 @@
+{
+  "name": "@dish/backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "convex dev",
+    "deploy": "convex deploy"
+  },
+  "dependencies": {
+    "convex": "^1.11.0"
+  },
+  "devDependencies": {
+    "@dish/tsconfig": "workspace:*",
+    "typescript": "^5.4.5"
+  }
+}

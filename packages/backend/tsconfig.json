@@ -1,0 +1,4 @@
+{
+  "extends": "@dish/tsconfig/base.json",
+  "include": ["convex"]
+}
