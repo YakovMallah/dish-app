@@ -73,3 +73,10 @@ Before finishing a task, proposing a commit, or presenting work to the user, Ant
    - Keep the summary brief but descriptive. Explain the *why* in the body if necessary.
 6. **PR & Code Review Management:**
    - When addressing Code Review comments, you MUST push the fixes and **actively resolve the thread in GitHub** (using the `resolveReviewThread` GraphQL mutation via `gh api graphql`). Never push a fix for a review thread without also marking that thread as resolved on GitHub.
+
+## 6. Workspace Cleanliness & Tool Usage
+
+- **No Residual Files:** NEVER create temporary files (e.g., `threads.json`, `review_out.json`, `temp.md`) in the project directory when running terminal commands or fetching API data. 
+- **Clean Pipelines:** Pass data directly within bash pipelines or memory whenever possible. 
+- **Use Scratch Directory:** If a temporary file is absolutely necessary for debugging or complex data extraction, you MUST create it inside the designated `<appDataDir>/brain/<conversation-id>/scratch/` directory, rather than polluting the user's workspace.
+- **Auto-Cleanup:** If a temporary file must be created in the local directory for tooling reasons, it MUST be comprehensively cleaned up and removed as part of the same tool command or immediately after in the very next step.
