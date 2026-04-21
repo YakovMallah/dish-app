@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+.pnpm-store/
 
 # Turbo
 .turbo/
@@ -20,7 +21,6 @@ dist/
 Thumbs.db
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo

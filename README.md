@@ -13,8 +13,8 @@ A cross-platform, real-time application designed to gamify the classic dinner pa
 ## Getting Started
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ## Project Structure
